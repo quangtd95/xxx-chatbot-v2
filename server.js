@@ -8,7 +8,7 @@ app.set('view engine','ejs');
 
 route.setRoute(app);
 
-var server = app.listen(process.env.PORT || 8081,function () {
+var server = app.listen(process.env.PORT || 5000,function () {
 	var host = server.address().address
   	var port = server.address().port
   	console.log("running: "+host+":"+port);
