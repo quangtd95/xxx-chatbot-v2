@@ -72,7 +72,7 @@ $(document).on('ready', (function () {
             }
             $.ajax({
                 type: "POST",
-                url: "https://xxxchatbotv2.herokuapp.com/query",
+                url: "/query",
                 timeout: 10000,
                 data: text = encodeURIComponent(query),
                  beforeSend: function (xhr) {
