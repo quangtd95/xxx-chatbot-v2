@@ -1,5 +1,4 @@
 var apiai = require('../lib/apiai/apiai.js');
-var db = require('../lib/db/dbHelper.js');
 
 module.exports = {
 	getHome : function (req,res) {
