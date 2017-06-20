@@ -84,7 +84,7 @@ $(document).on('ready', (function () {
                 success: function(data) {
                     var reply = decodeURIComponent(decodeURIComponent(data.result.fulfillment.speech));
 
-                    if (data.result.action=='answer.dont' || data.result.fulfillment.source =='end'){
+                    if (data.result.action=='answer.dont' || data.result.fulfillment.source =='end.session'){
                         sendMessage(reply,'left',true);
                     } else {
                         sendMessage(reply,'left',false);
