@@ -2,7 +2,7 @@ var apiai = require('../lib/apiai/apiai.js');
 
 module.exports = {
 	getHome : function (req,res) {
-		res.render( "index",{title:'Bankchatbot'});
+		res.render( "index",{title:'Bankchatbot-THAI DUY QUANG '});
 	},
 	postQuery : function (req,res) {
 		var body = '';
