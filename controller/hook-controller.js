@@ -57,7 +57,7 @@ function checkPassword(request,response){
 		reply ="Sorry! Your password is not correct, try again!";
 		source ='';
 		if (lifespan == 0){
-			reply = "Your account has been blocked because you had wrong meny times. Please contact the nearest bank if you need any assistance!"
+			reply = "Your account has been blocked because you had wrong many times. Please contact the nearest bank if you need any assistance!"
 			source = "end.session"
 		}
 		contexts.push(new object.Context(name_context,lifespan,{}));
