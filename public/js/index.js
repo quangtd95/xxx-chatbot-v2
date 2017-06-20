@@ -72,9 +72,15 @@ $(document).on('ready', (function () {
             }
             $.ajax({
                 type: "POST",
-                url: "/query",
+                url: "https://xxxchatbotv2.herokuapp.com/query",
                 timeout: 10000,
                 data: text = encodeURIComponent(query),
+                 beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                    xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+                    xhr.setRequestHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+                    xhr.setRequestHeader('Access-Control-Allow-Credentials', true);
+                },
                 success: function(data) {
                     var reply = decodeURIComponent(decodeURIComponent(data.result.fulfillment.speech));
 
