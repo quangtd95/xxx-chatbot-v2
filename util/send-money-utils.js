@@ -59,7 +59,7 @@ function checkMoney (request,response,isFallback) {
 		api_util.removeContext(contexts,'ask_money_to_send');
 		api_util.removeContext(contexts,'send_money');
 		api_util.addContext(contexts,'ask_verify_code',3,{});
-		otp.sendSms('+841264793929'," Your verify code is 12345");
+		otp.sendSms('+841264793929'," Your verify code is 0000");
 	}
 
 	if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
