@@ -48,6 +48,7 @@ function checkPassword(request,response){
 	var contexts =[];
 	var lifespan = api_util.getLifeSpanOfContext(request,name_context);
 
+
 	//nếu đúng mật khẩu.
 	if (String(password) == String(account.MATKHAU)){
 		reply ="Hello "+account.TEN+", You have validated successfully.What do you want now?";
@@ -65,7 +66,7 @@ function checkPassword(request,response){
 		}
 		contexts.push(new object.Context(name_context,lifespan,{}));
 	}
-
+	console.log(reply);
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
