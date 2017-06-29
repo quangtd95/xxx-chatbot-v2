@@ -22,22 +22,10 @@ module.exports = {
 			case 'sendmoney.user.money.fallback':
 			checkMoney(req,res,true);
 			break;
-			case 'sendmoney.user.code':
-			checkCode(req,res,false);
-			break;
-			case 'sendmoney.user.code.falback':
-			checkCode(req,res,true);
-			break;
 		}
 	}
 }
 
-function checkCode(request,response,isFallback){
-	var number;
-	var reply;
-	var contexts = [];
-	var source;
-}
 
 
 function checkMoney (request,response,isFallback) {
