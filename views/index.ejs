@@ -3,14 +3,19 @@
 <head>
    <title>Chat bot</title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" type="text/css" href="../css/index.css">
+   <script src="/socket.io/socket.io.js"></script>
    <script type="text/javascript" src="../js/index.js"></script>
+   <script>
+    var adr = '<%=host%>:<%=port%>';
+    var socket = io.connect(adr);
+    console.log(adr);
+    socket.on('greeting', function(data){
+     alert(data);
+  });       
+</script>
 </head>
 <body>
  <div class="chat_window">
@@ -23,8 +28,8 @@
       <div class="title"><%=title%></div>
    </div>
    <ul class="messages">
-      
-      
+
+
    </ul>
    <div class="bottom_wrapper clearfix">
       <div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..." /></div>
@@ -40,7 +45,7 @@
       <div class="text_wrapper">
          <div class="text"></div>
          <center>
-         <button  class="btn btn-danger button">new Session</button>
+            <button  class="btn btn-danger button">new Session</button>
          </center>
       </div>
    </li>

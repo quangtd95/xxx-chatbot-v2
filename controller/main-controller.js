@@ -2,7 +2,8 @@ var apiai = require('../lib/apiai/apiai.js');
 
 module.exports = {
 	getHome : function (req,res) {
-		res.render( "index",{title:'BANKCHATBOT - THAI DUY QUANG (FHO-CTC) '});
+		var title = 'BANKCHATBOT - THAI DUY QUANG (FHO-CTC)';
+		res.render( "index",{title:title,host:process.env.LOCAL_HOST||'xxxchatbotv2.herokuapp.com',port:process.env.LOCAL_PORT||process.env.PORT});
 	},
 	postQuery : function (req,res) {
 		var body = '';

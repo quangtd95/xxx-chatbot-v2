@@ -23,15 +23,33 @@ module.exports = {
 			checkMoney(req,res,true);
 			break;
 			case 'sendmoney.user.code':
+			checkCode(req,res,false);
+			break;
 			case 'sendmoney.user.code.fallback':
-			checkCode();
+			checkCode(req,res,true);
+			break;
 
 		}
 	}
 }
 
-function checkCode(){
-	
+function checkCode(request,response,isFallback){
+	var code;
+	var reply;
+	var contexts =[];
+	var source;
+	var lifespan = api_util.getLifeSpanOfContext(request,'ask_verify_code');
+	if (isFallback) {
+		if (request.body.result.resolvedQuery.toLowerCase() == 'cancel'){
+			code = 'cancel';
+		} else {
+			code = '';
+			reply = 'I dont\' understand what are you saying';
+		}
+	} else {
+		code = request.body.result.parameters.number;
+		reply = ""
+	}
 }
 
 

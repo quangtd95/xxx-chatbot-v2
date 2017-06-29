@@ -1,9 +1,4 @@
-$(document).on('ready', (function () {
-    $('.message_input').focus();
-}));
-
 (function () {
-
     var Message;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side,this.end = arg.end;
@@ -22,8 +17,7 @@ $(document).on('ready', (function () {
                 } else {
                     $message.find('.button'). hide();
                 }
-                
-
+            
                 $('.messages').append($message);
                 return setTimeout(function () {
                     return $message.addClass('appeared');
@@ -75,7 +69,7 @@ $(document).on('ready', (function () {
                 url: "/query",
                 timeout: 10000,
                 data: text = encodeURIComponent(query),
-                 beforeSend: function (xhr) {
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
                     xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
                     xhr.setRequestHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
