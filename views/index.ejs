@@ -9,16 +9,23 @@
    <script src="/socket.io/socket.io.js"></script>
    <script type="text/javascript" src="../js/index.js"></script>
    <script>
-    var adr = '<%=host%>:<%=port%>';
-    var socket = io.connect(adr);
-    console.log(adr);
-    socket.on('greeting', function(data){
-     alert(data);
-  });       
-</script>
+     var host = '<%=host%>';
+     var socket;
+     var adr;
+     if (host == 'localhost') {
+      adr = 'localhost:5000';
+      socket = io.connect(adr);
+   }else {
+      socket = io();
+   }
+     console.log(adr);
+     socket.on('greeting', function(data){
+       alert(data);
+    });       
+ </script>
 </head>
 <body>
- <div class="chat_window">
+  <div class="chat_window">
    <div class="top_menu">
       <div class="buttons">
          <div class="button close"></div>
