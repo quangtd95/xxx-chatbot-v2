@@ -22,8 +22,16 @@ module.exports = {
 			case 'sendmoney.user.money.fallback':
 			checkMoney(req,res,true);
 			break;
+			case 'sendmoney.user.code':
+			case 'sendmoney.user.code.fallback':
+			checkCode();
+
 		}
 	}
+}
+
+function checkCode(){
+	
 }
 
 
