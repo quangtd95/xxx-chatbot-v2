@@ -3,9 +3,11 @@ var db = require('../lib/db/dbHelper.js');
 var object = require('../model/object.js');
 var account;
 module.exports = {
-	handle : function (action,req,res,account){
-		this.account = account;
+	handle : function (action,req,res){
 		switch (action) {
+			case 'login.welcome':
+			welcome(req,res);
+			break;
 			case 'login.user.account':
 			checkAccountNumber(req,res,false);
 			break;
@@ -39,7 +41,7 @@ function dontKnowPassword(request,response){
 }
 
 function checkPassword(request,response){
-	var password = request.body.result.parameters.any;
+	var password = request.body.result.parameters.password;
 	var name_context = 'ask_password';
 	var reply;
 	var source;
@@ -49,7 +51,7 @@ function checkPassword(request,response){
 	//nếu đúng mật khẩu.
 	if (String(password) == String(account.MATKHAU)){
 		reply ="Hello "+account.TEN+", You have validated successfully.What do you want now?";
-		contexts.push(new object.Context('authentication_pass',200,{}));
+		contexts.push(new object.Context('authentication_pass',200,{'account_number':account.SOTAIKHOAN}));
 		contexts.push(new object.Context('ask_service',5,{}));
 		contexts.push(new object.Context(name_context,0,{}));
 	}
@@ -62,7 +64,6 @@ function checkPassword(request,response){
 			source = "end.session"
 		}
 		contexts.push(new object.Context(name_context,lifespan,{}));
-		console.log(JSON.stringify(contexts));
 	}
 
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
@@ -128,4 +129,13 @@ function checkAccountNumber(request,response,isFallback){
 		contexts.push(new object.Context(name_context,lifespan,{}))
 		return response.json(api_util.makeJsonResponse(reply,source,contexts))
 	})
+}
+
+function welcome(request,response){
+	var contexts = []
+	var reply = "Thank you for contacting XXX. What's your account number?"
+	var source = ''
+	api_util.removeAllContext(request,contexts);
+	api_util.addContext(contexts,'ask_account_number',3,{});
+	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }

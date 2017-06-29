@@ -11,13 +11,11 @@ module.exports = {
 }
 
 function chooseServiceSendMoney(request,response,account){
-	var name_context= 'send_money';
-	var lifespan = 3;
 	var contexts = [];
-	var reply = "Who do you want to send money to?";
+	var reply = "Who do you want to send money to? Please type ONLY and EXACTLY full name";
 	var source = ""	;
-	contexts.push(new object.Context('ask_service',0,{}));
-	contexts.push(new object.Context(name_context,lifespan,{}));
-	console.log(contexts);
+	api_util.removeContext(contexts,'ask_service');;
+	api_util.addContext(contexts,'ask_name_to_send',3,{})
+	api_util.addContext(contexts,'send_money',10,{});
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
