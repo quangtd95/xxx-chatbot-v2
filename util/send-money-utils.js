@@ -1,6 +1,7 @@
 var api_util = require('../util/apiai-utils.js');
 var db = require('../lib/db/dbHelper.js');
 var object = require('../model/object.js');
+var otp = require('../lib/otp/otp.js');
 
 module.exports = {
 	handle: function (action,req,res,account){
@@ -21,10 +22,24 @@ module.exports = {
 			case 'sendmoney.user.money.fallback':
 			checkMoney(req,res,true);
 			break;
-
+			case 'sendmoney.user.code':
+			checkCode(req,res,false);
+			break;
+			case 'sendmoney.user.code.falback':
+			checkCode(req,res,true);
+			break;
 		}
 	}
 }
+
+funtion checkCode(request,response,isFallback){
+	var number;
+	var reply;
+	var contexts = [];
+	var source;
+}
+
+
 function checkMoney (request,response,isFallback) {
 	var number;
 	var reply;
@@ -44,6 +59,7 @@ function checkMoney (request,response,isFallback) {
 		api_util.removeContext(contexts,'ask_money_to_send');
 		api_util.removeContext(contexts,'send_money');
 		api_util.addContext(contexts,'ask_verify_code',3,{});
+		otp.sendSms('+841264793929'," Your verify code is 12345");
 	}
 
 	if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){

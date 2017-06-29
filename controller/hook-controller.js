@@ -16,8 +16,6 @@ module.exports = {
 			case 'sendmoney':
 			send_money_util.handle(action,req,res,account);
 			break;
-
-
 		}
 	}
 }
