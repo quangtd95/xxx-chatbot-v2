@@ -32,7 +32,7 @@ module.exports = {
 	}
 }
 
-funtion checkCode(request,response,isFallback){
+function checkCode(request,response,isFallback){
 	var number;
 	var reply;
 	var contexts = [];
