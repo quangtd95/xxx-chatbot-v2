@@ -10,7 +10,7 @@
    <script type="text/javascript" src="../js/index.js"></script>
    <script>
     var adr = '<%=host%>:<%=port%>';
-    var socket = io.connect(adr);
+    var socket = io.connect('localhost:<%=port%>');
     console.log(adr);
     socket.on('greeting', function(data){
      alert(data);
