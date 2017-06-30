@@ -247,7 +247,7 @@ function checkAccountNumber(request,response,isFallback){
 		reply = "how much do you want to send?";
 		api_util.removeContext(contexts,'ask_account_number_to_send');
 		api_util.addContext(contexts,'ask_money_to_send',3,{});
-		api_util.addContext(contexts,'send_money',3,{'account_number':account_number});
+		api_util.addContext(contexts,'send_money',3,{'account_number':data.SOTAIKHOAN});
 		return response.json(api_util.makeJsonResponse(reply,source,contexts));
 
 	});
