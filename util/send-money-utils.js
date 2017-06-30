@@ -132,6 +132,7 @@ function checkCode(request,response,isFallback){
 function checkMoney (request,response,isFallback,socket) {
 	var money;
 	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
+	console.log(phone_number_of_sender);
 	var reply;
 	var contexts = [];
 	var source ;
