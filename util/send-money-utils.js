@@ -40,6 +40,8 @@ function checkCode(request,response,isFallback){
 	var contexts =[];
 	var source;
 	var lifespan = api_util.getLifeSpanOfContext(request,'ask_verify_code');
+
+	console.log("code dung: "+codeTrue);
 	if (isFallback) {
 		if (request.body.result.resolvedQuery.toLowerCase() == 'cancel'){
 			code = 'cancel';
@@ -61,6 +63,7 @@ function checkCode(request,response,isFallback){
 			reply = "sorry, the code you have typen is not correct. Please try again";
 		}
 	}
+	console.log("code nhap vao: "+ code);
 	if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
 		if (lifespan == 0 ) {
 			reply = "Your transaction has been cancel. Please type conrrectly verify code in next time!\n what would you like to do?"
