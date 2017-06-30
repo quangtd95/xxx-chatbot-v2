@@ -34,6 +34,7 @@ module.exports = {
 }
 
 function checkCode(request,response,isFallback){
+	var codeTrue = api_util.getParamsOfContext(request,'ask_verify_code').code;
 	var code;
 	var reply;
 	var contexts =[];
@@ -49,7 +50,30 @@ function checkCode(request,response,isFallback){
 	} else {
 		code = request.body.result.parameters.number;
 		reply = ""
+		//nhaapj ddung code
+		if (code == codeTrue){
+			reply = "correctly. Are you sure you want to send?";
+			api_util.removeContext(contexts,'ask_verify_code');
+			api_util.addContext(contexts,'ask_confirm',3,{});
+		}
+		//nhap sai
+		else {
+			reply = "sorry, the code you have typen is not correct. Please try again";
+		}
 	}
+	if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
+		if (lifespan == 0 ) {
+			reply = "Your transaction has been cancel. Please type conrrectly verify code in next time!\n what would you like to do?"
+		}
+		else {
+			reply = "Your transaction has been cancel. What would you like to do?"
+		}
+		source = ""
+		api_util.removeContext(contexts,'ask_verify_code');
+		api_util.removeContext(contexts,'send_money');
+		api_util.addContext(contexts,'ask_service',3,{});
+	}
+	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
 
@@ -71,8 +95,7 @@ function checkMoney (request,response,isFallback,socket) {
 		number = request.body.result.parameters.number;
 		reply = "we just have given you a code in sms. plese type it: ";
 		api_util.removeContext(contexts,'ask_money_to_send');
-		api_util.removeContext(contexts,'send_money');
-		var code =  Math.random() * (9999- 1000) + 1000;
+		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 		api_util.addContext(contexts,'ask_verify_code',3,{code:code});
 		otp.sendSms('+841264793929'," Your verify code is "+code);
 		
