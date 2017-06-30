@@ -4,7 +4,7 @@ var object = require('../model/object.js');
 var otp = require('../lib/otp/otp.js');
 
 module.exports = {
-	handle: function (action,req,res,account){
+	handle: function (action,req,res,account,socket){
 		switch(action){
 			case 'sendmoney.user.name':
 			case 'sendmoney.user.name.fallback':
@@ -17,10 +17,10 @@ module.exports = {
 			checkAccountNumber(req,res,true);
 			break;
 			case 'sendmoney.user.money':
-			checkMoney(req,res,false);
+			checkMoney(req,res,socket,false);
 			break;
 			case 'sendmoney.user.money.fallback':
-			checkMoney(req,res,true);
+			checkMoney(req,res,socket,true);
 			break;
 			case 'sendmoney.user.code':
 			checkCode(req,res,false);
@@ -33,7 +33,7 @@ module.exports = {
 	}
 }
 
-function checkCode(request,response,isFallback){
+function checkCode(request,response,socket,isFallback){
 	var code;
 	var reply;
 	var contexts =[];
@@ -69,11 +69,15 @@ function checkMoney (request,response,isFallback) {
 		}
 	} else {
 		number = request.body.result.parameters.number;
-		reply = "we have give you a code in sms. plese type it: ";
+		reply = "we just have given you a code in sms. plese type it: ";
 		api_util.removeContext(contexts,'ask_money_to_send');
 		api_util.removeContext(contexts,'send_money');
 		api_util.addContext(contexts,'ask_verify_code',3,{});
 		otp.sendSms('+841264793929'," Your verify code is 0000");
+		setTimeout(function() {
+			socket.emit('timeout','sorry, you must enter correctly veryfy code to continue');
+		}, 30000);
+
 	}
 
 	if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){

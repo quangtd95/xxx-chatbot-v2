@@ -9,6 +9,9 @@
    }else {
       socket = io();
    }
+   socket.on('timeout',(data)=>{
+    alert(data);
+   });
         
 
     var Message;

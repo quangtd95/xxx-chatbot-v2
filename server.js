@@ -15,7 +15,6 @@ var sess = {
 	cookie: { secure: false }
 }
 app.use(session(sess));
-route.setRoute(app);
 
 server.listen(process.env.PORT || 5000,function () {
 	var host = server.address().address
@@ -32,5 +31,7 @@ io.set('origins', '*:*');
 
 io.on('connection', function(socket){
 	console.log('a user connected');
-	 socket.on('disconnect', () => console.log('Client disconnected'));
+	route.setRoute(app,socket);
+	socket.on('disconnect', () => console.log('Client disconnected'));
 });
+
