@@ -1,9 +1,9 @@
 
 var mainController = require('../controller/main-controller.js');
 var hookController = require('../controller/hook-controller.js');
-
+var socket;
 module.exports = {
-	setRoute : function (app,socket) {
+	setRoute : function (app) {
 		
 		app.get('/',function(req,res){
 			mainController.getHome(req,res);
@@ -13,9 +13,12 @@ module.exports = {
 			mainController.postQuery(req,res);
 		});
 
-		app.post('/hook',function (req,res,socket) {
+		app.post('/hook',function (req,res) {
 			hookController.hook(req,res,socket);
 		});
+	},
+	setSocket :function(socket){
+		this.socket = socket;
 	}
 }
 

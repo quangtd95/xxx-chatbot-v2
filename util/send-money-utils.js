@@ -17,10 +17,10 @@ module.exports = {
 			checkAccountNumber(req,res,true);
 			break;
 			case 'sendmoney.user.money':
-			checkMoney(req,res,socket,false);
+			checkMoney(req,res,false,socket);
 			break;
 			case 'sendmoney.user.money.fallback':
-			checkMoney(req,res,socket,true);
+			checkMoney(req,res,true,socket);
 			break;
 			case 'sendmoney.user.code':
 			checkCode(req,res,false);
@@ -54,7 +54,7 @@ function checkCode(request,response,isFallback){
 
 
 
-function checkMoney (request,response,socket,isFallback) {
+function checkMoney (request,response,isFallback,socket) {
 	var number;
 	var reply;
 	var contexts = [];
@@ -74,8 +74,10 @@ function checkMoney (request,response,socket,isFallback) {
 		api_util.removeContext(contexts,'send_money');
 		api_util.addContext(contexts,'ask_verify_code',3,{});
 		otp.sendSms('+841264793929'," Your verify code is 0000");
+		
 		setTimeout(function() {
-			socket.emit('timeout','sorry, you must enter correctly veryfy code to continue');
+			if (socket != null)
+				socket.emit('timeout','sorry, you must enter correctly veryfy code to continue');
 		}, 30000);
 
 	}

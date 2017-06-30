@@ -25,13 +25,10 @@ server.listen(process.env.PORT || 5000,function () {
 var io = require('socket.io')(server);
 io.set('origins', '*:*');
 
-/*var run = function(socket){
-	socket.emit('greeting', 'Hello from Socket.IO server');
-}*/
-
+route.setRoute(app);
 io.on('connection', function(socket){
+	route.setSocket(socket);
 	console.log('a user connected');
-	route.setRoute(app,socket);
 	socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
