@@ -33,7 +33,7 @@ module.exports = {
 	}
 }
 
-function checkCode(request,response,socket,isFallback){
+function checkCode(request,response,isFallback){
 	var code;
 	var reply;
 	var contexts =[];
@@ -54,7 +54,7 @@ function checkCode(request,response,socket,isFallback){
 
 
 
-function checkMoney (request,response,isFallback) {
+function checkMoney (request,response,socket,isFallback) {
 	var number;
 	var reply;
 	var contexts = [];
