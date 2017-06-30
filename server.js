@@ -26,12 +26,11 @@ server.listen(process.env.PORT || 5000,function () {
 var io = require('socket.io')(server);
 io.set('origins', '*:*');
 
-var run = function(socket){
+/*var run = function(socket){
 	socket.emit('greeting', 'Hello from Socket.IO server');
-}
+}*/
 
 io.on('connection', function(socket){
-	run(socket);
 	console.log('a user connected');
 	 socket.on('disconnect', () => console.log('Client disconnected'));
 });

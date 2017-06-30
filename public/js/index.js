@@ -1,4 +1,16 @@
 (function () {
+    // <script>
+     var host = '<%=host%>';
+     var socket;
+     var adr;
+     if (host == 'localhost') {
+      adr = 'localhost:5000';
+      socket = io.connect(adr);
+   }else {
+      socket = io();
+   }
+        
+
     var Message;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side,this.end = arg.end;
