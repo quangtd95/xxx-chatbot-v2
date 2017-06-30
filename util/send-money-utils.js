@@ -150,7 +150,7 @@ function checkMoney (request,response,isFallback,socket) {
 		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 		api_util.addContext(contexts,'ask_verify_code',3,{code:code});
 		api_util.addContext(contexts,'send_money',3,{money:money});
-		otp.sendSms(phone_number," Your verify code is "+code);
+		otp.sendSms(phone_number_of_sender," Your verify code is "+code);
 		
 		setTimeout(function() {
 			console.log("socket run");
