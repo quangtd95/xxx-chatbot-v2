@@ -10,6 +10,7 @@
       socket = io();
    }
    socket.on('timeout',(data)=>{
+    console.log(data);
     alert(data);
    });
         

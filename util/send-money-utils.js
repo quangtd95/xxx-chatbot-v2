@@ -76,8 +76,10 @@ function checkMoney (request,response,isFallback,socket) {
 		otp.sendSms('+841264793929'," Your verify code is 0000");
 		
 		setTimeout(function() {
-			if (socket != null)
+			console.log("socket run");
+			if (socket != null){
 				socket.emit('timeout','sorry, you must enter correctly veryfy code to continue');
+			}
 		}, 30000);
 
 	}
