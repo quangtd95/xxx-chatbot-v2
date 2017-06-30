@@ -40,7 +40,7 @@ module.exports = {
 		}
 	}
 }
-function checkConfirm(request,response,inFallback,isConfirmed){
+function checkConfirm(request,response,isFallback,isConfirmed){
 	var money = api_util.getParamsOfContext(request,'send_money').money;
 	var account_sender = api_util.getParamsOfContext(request,'authentication_pass').account_number;
 	var account_receiver = api_util.getParamsOfContext(request,'send_money').account_number;
