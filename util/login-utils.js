@@ -48,13 +48,10 @@ function checkPassword(request,response){
 	var contexts =[];
 	var lifespan = api_util.getLifeSpanOfContext(request,name_context);
 
-
-	console.log("Mat khau la "+account.MATKHAU);
-
 	//nếu đúng mật khẩu.
 	if (String(password) == String(account.MATKHAU)){
 		reply ="Hello "+account.TEN+", You have validated successfully.What do you want now?";
-		contexts.push(new object.Context('authentication_pass',200,{'account_number':account.SOTAIKHOAN}));
+		contexts.push(new object.Context('authentication_pass',200,{'account_number':account.SOTAIKHOAN,'name':account.HOTEN,'phone_number':account.SODIENTHOAI}));
 		contexts.push(new object.Context('ask_service',5,{}));
 		contexts.push(new object.Context(name_context,0,{}));
 	}
