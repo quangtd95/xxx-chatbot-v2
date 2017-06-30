@@ -64,7 +64,7 @@ function checkCode(request,response,isFallback){
 		}
 	}
 	console.log("code nhap vao: "+ code);
-	if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
+	if ((lifespan == 0) || (code.toLowerCase() == 'cancel')){
 		if (lifespan == 0 ) {
 			reply = "Your transaction has been cancel. Please type conrrectly verify code in next time!\n what would you like to do?"
 		}
