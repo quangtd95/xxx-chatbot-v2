@@ -51,35 +51,43 @@ function checkConfirm(request,response,isFallback,isConfirmed){
 	var lifespan = api_util.getLifeSpanOfContext(request,'ask_confirm');
 	var input = request.body.result.resolvedQuery.toLowerCase();
 
-	if ((lifespan == 0) || (input == 'cancel') || (!isConfirmed)){
-		if (lifespan == 0 || !isConfirmed) {
+	console.log("lifespan = "+lifespan);
+	console.log("input = "+input);
+	console.log("isConfirmed = "+isConfirmed);
+	console.log("isFallback = "+isFallback);
+
+	if (isFallback){
+		reply = 'I don\'t understand what are you saying';
+		if (lifespan == 0){
 			reply = "Your transaction has been cancel. Please type confirm your action in next time!\n what would you like to do?"
+			source = ""
+			api_util.removeContext(contexts,'ask_confirm');
+			api_util.removeContext(contexts,'send_money');
+			api_util.addContext(contexts,'ask_service',3,{});
+			return response.json(api_util.makeJsonResponse(reply,source,contexts));
 		}
-		else {
-			reply = "Your transaction has been cancel. What would you like to do?"
-		}
-		source = ""
+	} else {
 		api_util.removeContext(contexts,'ask_confirm');
 		api_util.removeContext(contexts,'send_money');
 		api_util.addContext(contexts,'ask_service',3,{});
-	} else {
-		if (isFallback){
-			reply = 'I dont\' understand what are you saying';
-		} else {	
+		if (isConfirmed){
 			db.sendMoney(account_sender,account_receiver,money,function (success,data) {
 				if (success){
 					reply = "Transaction is completed. What would you like to do next?";
 				} else {
 					reply = "Transaction cannot be completed. "+data+". What would you like to do next?";
 				}
-				api_util.removeContext(contexts,'ask_confirm');
-				api_util.removeContext(contexts,'send_money');
-				api_util.addContext(contexts,'ask_service',3,{});		
+				console.log("sucess= "+success);
+				console.log("data= "+data);			
+				return response.json(api_util.makeJsonResponse(reply,source,contexts));
 			});
+		} else {
+			reply = "Your transaction has been cancel. What would you like to do?"		
+			return response.json(api_util.makeJsonResponse(reply,source,contexts));
 		}
+		
 	}
-	return response.json(api_util.makeJsonResponse(reply,source,contexts));
-
+	
 }
 
 function checkCode(request,response,isFallback){
@@ -150,12 +158,12 @@ function checkMoney (request,response,isFallback,socket) {
 			reply = 'please type again how much you want to send! At least 1vnd!';
 		}
 		else {
-		reply = "we just have given you a code in sms. plese type it: ";
-		api_util.removeContext(contexts,'ask_money_to_send');
-		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
-		api_util.addContext(contexts,'ask_verify_code',3,{code:code});
-		api_util.addContext(contexts,'send_money',3,{money:money});
-		otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
+			reply = "we just have given you a code in sms. plese type it: ";
+			api_util.removeContext(contexts,'ask_money_to_send');
+			var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
+			api_util.addContext(contexts,'ask_verify_code',3,{code:code});
+			api_util.addContext(contexts,'send_money',3,{money:money});
+			otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
 		}
 		
 		setTimeout(function() {
