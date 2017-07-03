@@ -146,12 +146,17 @@ function checkMoney (request,response,isFallback,socket) {
 		}
 	} else {
 		money = request.body.result.parameters.number;
+		if (Number(money) < 0) {
+			reply = 'please type again how much you want to send! At least 1vnd!';
+		}
+		else {
 		reply = "we just have given you a code in sms. plese type it: ";
 		api_util.removeContext(contexts,'ask_money_to_send');
 		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 		api_util.addContext(contexts,'ask_verify_code',3,{code:code});
 		api_util.addContext(contexts,'send_money',3,{money:money});
-		otp.sendSms(phone_number_of_sender," Your verify code is "+code);
+		otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
+		}
 		
 		setTimeout(function() {
 			console.log("socket run");
