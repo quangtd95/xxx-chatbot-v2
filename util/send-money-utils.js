@@ -93,7 +93,7 @@ function resendCode(request,response){
 	var contexts = [];
 	var source ;
 	var reply;
-	console.log("hien tai==="+Date.now().getTime);
+	console.log("hien tai==="+Date.now());
 	console.log("thoi gian ban dau ==="+time_send_code);
 	if (Date.now().getTime - time_send_code < 60000){
 		reply = "please wait about 1 minute before requesting a new code";
