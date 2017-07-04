@@ -102,11 +102,11 @@ function resendCode(request,response){
 		otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
 	}
 	var lifespan1 = api_util.getLifeSpanOfContext(request,'ask_verify_code');
-	api_util.addContext(contexts,'ask_verify_code',lifespan1,{code:code,time:Date.now()});
+	api_util.addContext(contexts,'ask_verify_code',lifespan1 + 1,{code:code,time:Date.now()});
 	var lifespan2 = api_util.getLifeSpanOfContext(request,'authentication_pass');
-	api_util.addContext(contexts,'authentication_pass',lifespan2,{});
+	api_util.addContext(contexts,'authentication_pass',lifespan2 + 1,{});
 	var lifespan3 = api_util.getLifeSpanOfContext(request,'send_money');
-	api_util.addContext(contexts,'send_money',lifespan3,{});
+	api_util.addContext(contexts,'send_money',lifespan3 + 1,{});
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
