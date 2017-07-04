@@ -89,6 +89,9 @@ function checkConfirm(request,response,isFallback,isConfirmed){
 }
 function resendCode(request,response){
 	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
+	var time_send_code = api_util.getParamsOfContext(request,'ask_verify_code').time;
+	console.log(time_send_code.getTime());
+	console.log(Date.now().getTime());
 	var contexts = [];
 	var source ;
 	reply = "we have resent a code to "+phone_number_of_sender+" , please check and enter the code below: ";
@@ -169,7 +172,7 @@ function checkMoney (request,response,isFallback,socket) {
 			reply = "we just have given you a code in sms. plese type it: ";
 			api_util.removeContext(contexts,'ask_money_to_send');
 			var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
-			api_util.addContext(contexts,'ask_verify_code',3,{code:code});
+			api_util.addContext(contexts,'ask_verify_code',3,{code:code,time:Date.now()});
 			api_util.addContext(contexts,'send_money',3,{money:money});
 			otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
 		}
