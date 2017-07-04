@@ -90,15 +90,19 @@ function checkConfirm(request,response,isFallback,isConfirmed){
 function resendCode(request,response){
 	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
 	var time_send_code = api_util.getParamsOfContext(request,'ask_verify_code').time;
-	console.log(time_send_code.getTime());
-	console.log(Date.now().getTime());
 	var contexts = [];
 	var source ;
-	reply = "we have resent a code to "+phone_number_of_sender+" , please check and enter the code below: ";
-	var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
-	var lifespan = api_util.getLifeSpanOfContext(request,'ask_verify_code');
-	api_util.addContext(contexts,'ask_verify_code',lifespan,{code:code});
-	otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
+	var reply;
+	if (Date.now().getTime() - time_send_code < 60000){
+		reply = "please wait about 1 minute before requesting a new code";
+	}
+	else{
+		reply = "we have resent a code to "+phone_number_of_sender+" , please check and enter the code below: ";
+		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
+		var lifespan = api_util.getLifeSpanOfContext(request,'ask_verify_code');
+		api_util.addContext(contexts,'ask_verify_code',lifespan,{code:code,time:Date.now()});
+		otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
+	}
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
