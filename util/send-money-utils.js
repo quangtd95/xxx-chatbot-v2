@@ -91,7 +91,7 @@ function resendCode(request,response){
 	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
 	var contexts = [];
 	var source ;
-	reply = "please check your inbox and enter the code: ";
+	reply = "we have resent a code to "+phone_number_of_sender+" , please check and end the code below: ";
 	var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 	var lifespan = api_util.getLifeSpanOfContext(request,'ask_verify_code');
 	api_util.addContext(contexts,'ask_verify_code',lifespan,{code:code});
