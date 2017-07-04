@@ -16,6 +16,6 @@ function chooseServiceSendMoney(request,response,account){
 	var source = ""	;
 	api_util.removeContext(contexts,'ask_service');;
 	api_util.addContext(contexts,'ask_name_to_send',3,{})
-	api_util.addContext(contexts,'send_money',10,{});
+	api_util.addContext(contexts,'send_money',100,{});
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
