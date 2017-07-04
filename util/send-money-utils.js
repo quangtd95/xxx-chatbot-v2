@@ -181,16 +181,10 @@ function checkMoney (request,response,isFallback,socket) {
 			api_util.removeContext(contexts,'ask_money_to_send');
 			var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 			api_util.addContext(contexts,'ask_verify_code',3,{code:code,time:Date.now()});
-			api_util.addContext(contexts,'send_money',3,{money:money});
+			api_util.addContext(contexts,'send_money',100,{money:money});
+			source = "countTime";
 			otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
 		}
-		
-		setTimeout(function() {
-			console.log("socket run");
-			if (socket != null){
-				socket.emit('timeout','sorry, you must enter correctly veryfy code to continue');
-			}
-		}, 30000);
 
 	}
 
