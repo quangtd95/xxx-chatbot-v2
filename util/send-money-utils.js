@@ -25,6 +25,9 @@ module.exports = {
 			case 'sendmoney.user.code':
 			checkCode(req,res,false);
 			break;
+			case 'sendmoney.user.resend.code':
+			resendCode(req,res);
+			break;
 			case 'sendmoney.user.code.fallback':
 			checkCode(req,res,true);
 			break;
@@ -50,11 +53,6 @@ function checkConfirm(request,response,isFallback,isConfirmed){
 	var source;
 	var lifespan = api_util.getLifeSpanOfContext(request,'ask_confirm');
 	var input = request.body.result.resolvedQuery.toLowerCase();
-
-	console.log("lifespan = "+lifespan);
-	console.log("input = "+input);
-	console.log("isConfirmed = "+isConfirmed);
-	console.log("isFallback = "+isFallback);
 
 	if (isFallback){
 		reply = 'I don\'t understand what are you saying';
@@ -88,6 +86,17 @@ function checkConfirm(request,response,isFallback,isConfirmed){
 		
 	}
 	
+}
+function resendCode(request,response){
+	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
+	var contexts = [];
+	var source ;
+	reply = "please check your inbox and enter the code: ";
+	var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
+	var lifespan = api_util.getLifeSpanOfContext(request,'ask_verify_code');
+	api_util.addContext(contexts,'ask_verify_code',lifespan,{code:code});
+	otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
+	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
 function checkCode(request,response,isFallback){
@@ -140,7 +149,6 @@ function checkCode(request,response,isFallback){
 function checkMoney (request,response,isFallback,socket) {
 	var money;
 	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
-	console.log(phone_number_of_sender);
 	var reply;
 	var contexts = [];
 	var source ;
