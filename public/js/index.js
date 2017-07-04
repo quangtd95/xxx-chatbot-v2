@@ -15,7 +15,7 @@
 });
 
 
-  var mIsGiveCode;
+  var mHasCode = false;
 
   var Message;
   Message = function (arg) {
@@ -102,10 +102,16 @@ $(function () {
                     sendMessage(reply,'left',false);
                 }
                 if (data.result.fulfillment.source =="countTime"){
+                    console.log("cancel");
                     setTimeout(function  () {
-                        console.log("cancel");
-                        postMessageToServer('cancel');
-                    }, 30000);
+                        if (mHasCode == false){
+                            postMessageToServer('cancel');
+                            mHasCode = true;
+                        }
+                    }, 120000);
+                }
+                if (data.result.fulfillment.source =="hasCode"){
+                    mHasCode = true;
                 }
             },
             error: function(jqXHR, textStatus, err) {

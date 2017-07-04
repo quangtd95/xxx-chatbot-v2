@@ -135,6 +135,7 @@ function checkCode(request,response,isFallback){
 			reply = "correctly. Are you sure you want to send "+money+" vnd to "+name_reciver+"?";
 			api_util.removeContext(contexts,'ask_verify_code');
 			api_util.addContext(contexts,'ask_confirm',3,{});
+			source = "hasCode";
 		}
 		//nhap sai
 		else {
@@ -149,7 +150,7 @@ function checkCode(request,response,isFallback){
 		else {
 			reply = "Your transaction has been cancel. What would you like to do?"
 		}
-		source = ""
+		source = "hasCode";
 		api_util.removeContext(contexts,'ask_verify_code');
 		api_util.removeContext(contexts,'send_money');
 		api_util.addContext(contexts,'ask_service',3,{});
