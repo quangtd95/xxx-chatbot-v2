@@ -13,8 +13,29 @@ module.exports = {
 			case 'service.user.ask.history':
 			askHistory(req,res);
 			break;
+			case  'service.user.which.service.fallback':
+			fallBack(req,res);
+			break;
+
 		}		
 	}
+}
+
+fallBack(request,responsee){
+	var reply;
+	var contexts = [];
+	var source;
+	var lifespan = api_util.getLifeSpanOfContext(request,'ask_service');
+	if ((lifespan == 0)){		
+		reply = "Your transaction has been cancel. Please type conrrectly service you want to use in next time!\n what would you like to do?"
+		source = "end.session";
+		api_util.removeContext(contexts,'ask_service');
+		api_util.removeContext(contexts,'authentication_pass');
+	}
+	else {
+		reply = "I can help you check your balance, your trading history or sending your money";
+	}
+	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
 function chooseServiceSendMoney(request,response){
