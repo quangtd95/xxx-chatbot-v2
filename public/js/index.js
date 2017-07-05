@@ -95,10 +95,7 @@ $(function () {
             },
             success: function(data) {
                 var reply = decodeURIComponent(decodeURIComponent(data.result.fulfillment.speech));
-
-
-                console.log(reply);
-                
+                reply = reply.replace('%0A','\n');
                 if (data.result.action=='answer.dont' || data.result.fulfillment.source =='end.session'){
                     sendMessage(reply,'left',true);
                 } else {
