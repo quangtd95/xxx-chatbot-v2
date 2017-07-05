@@ -1,4 +1,3 @@
-
 var mainController = require('../controller/main-controller.js');
 var hookController = require('../controller/hook-controller.js');
 module.exports = {
@@ -13,7 +12,7 @@ module.exports = {
 		});
 
 		app.post('/hook',function (req,res) {
-			hookController.hook(req,res,socket);
+			hookController.hook(req,res);
 		});
 	}
 }
