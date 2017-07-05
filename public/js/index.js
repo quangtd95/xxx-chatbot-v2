@@ -96,6 +96,9 @@ $(function () {
             success: function(data) {
                 var reply = decodeURIComponent(decodeURIComponent(data.result.fulfillment.speech));
 
+
+                console.log(reply);
+                
                 if (data.result.action=='answer.dont' || data.result.fulfillment.source =='end.session'){
                     sendMessage(reply,'left',true);
                 } else {
