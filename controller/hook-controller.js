@@ -2,7 +2,6 @@ var account;
 var login_util = require('../util/login-utils.js');
 var service_util = require('../util/service-utils.js');
 var send_money_util = require('../util/send-money-utils.js');
-var balance_util = require('../util/balance_utils.js');
 module.exports = {
 	hook : function (req,res) {
 		var action = String(req.body.result.action);
