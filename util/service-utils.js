@@ -51,7 +51,7 @@ function askHistory(request,response){
 		if (!success){
 			reply = "sorry, server is unavailable now. please try again later";
 		} else {
-			reply = "Your transaction history: \n"+data;
+			reply = data;
 		}
 		return response.json(api_util.makeJsonResponse(reply,source,contexts));
 	});
