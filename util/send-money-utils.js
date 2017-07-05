@@ -95,14 +95,17 @@ function resendCode(request,response){
 	var reply;
 	if (Date.now() - time_send_code < 10000){
 		reply = "please wait about 10 seconds before requesting a new code!";
+		var lifespan1 = api_util.getLifeSpanOfContext(request,'ask_verify_code');
+		api_util.addContext(contexts,'ask_verify_code',lifespan1 + 1,{code:code,time:time_send_code});
 	}
 	else{
 		reply = "we have resent a code to "+phone_number_of_sender+" , please check and enter the code below: ";
 		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
-		otp.sendSms(phone_number_of_sender," Your verify code is "+code);	
+		otp.sendSms(phone_number_of_sender," Your verify code is "+code);
+		var lifespan1 = api_util.getLifeSpanOfContext(request,'ask_verify_code');
+		api_util.addContext(contexts,'ask_verify_code',lifespan1 + 1,{code:code,time:Date.now()});	
 	}
-	var lifespan1 = api_util.getLifeSpanOfContext(request,'ask_verify_code');
-	api_util.addContext(contexts,'ask_verify_code',lifespan1 + 1,{code:code,time:Date.now()});
+	
 	var lifespan2 = api_util.getLifeSpanOfContext(request,'authentication_pass');
 	api_util.addContext(contexts,'authentication_pass',lifespan2 + 1,{});
 	var lifespan3 = api_util.getLifeSpanOfContext(request,'send_money');
