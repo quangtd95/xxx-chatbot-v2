@@ -99,7 +99,7 @@ function resendCode(request,response){
 		api_util.addContext(contexts,'ask_verify_code',lifespan1 + 1,{code:code,time:time_send_code});
 	}
 	else{
-		reply = "we have resent a code to "+phone_number_of_sender+" , please check and enter the code below: ";
+		reply = "we have sent you a PIN code to "+phone_number_of_sender+" , please check and enter the code below: ";
 		var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 		otp.sendSms(phone_number_of_sender," Your verify code is "+code);
 		var lifespan1 = api_util.getLifeSpanOfContext(request,'ask_verify_code');
@@ -181,7 +181,7 @@ function checkMoney (request,response,isFallback,socket) {
 			reply = 'please type again how much you want to send! At least 1vnd!';
 		}
 		else {
-			reply = "we just have given you a code in sms. plese type it: ";
+			reply = "we just have sent you a PIN code in a text message. plese type it: ";
 			api_util.removeContext(contexts,'ask_money_to_send');
 			var code =  Math.floor(Math.random() * (9999- 1000) + 1000);
 			api_util.addContext(contexts,'ask_verify_code',3,{code:code,time:Date.now()});
