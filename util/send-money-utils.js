@@ -4,7 +4,7 @@ var object = require('../model/object.js');
 var otp = require('../lib/otp/otp.js');
 
 module.exports = {
-	handle: function (action,req,res,account,socket){
+	handle: function (action,req,res){
 		switch(action){
 			case 'sendmoney.user.name':
 			case 'sendmoney.user.name.fallback':

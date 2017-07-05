@@ -1,16 +1,16 @@
 var object = require('../model/object.js');
 var api_util = require('../util/apiai-utils.js');
 module.exports = {
-	handle : function (action,req,res,account) {
+	handle : function (action,req,res) {
 		switch (action) {
 			case 'service.user.want.send.money':
-			chooseServiceSendMoney(req,res,account);
+			chooseServiceSendMoney(req,res);
 			break;
 		}		
 	}
 }
 
-function chooseServiceSendMoney(request,response,account){
+function chooseServiceSendMoney(request,response){
 	var contexts = [];
 	var reply = "Who do you want to send money to? Please type ONLY and EXACTLY full name";
 	var source = ""	;
