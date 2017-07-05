@@ -17,10 +17,10 @@ module.exports = {
 			checkAccountNumber(req,res,true);
 			break;
 			case 'sendmoney.user.money':
-			checkMoney(req,res,false,socket);
+			checkMoney(req,res,false);
 			break;
 			case 'sendmoney.user.money.fallback':
-			checkMoney(req,res,true,socket);
+			checkMoney(req,res,true);
 			break;
 			case 'sendmoney.user.code':
 			checkCode(req,res,false);
