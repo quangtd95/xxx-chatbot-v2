@@ -22,13 +22,5 @@ server.listen(process.env.PORT || 5000,function () {
 	console.log("running: "+host+":"+port);
 });
 
-var io = require('socket.io')(server);
-io.set('origins', '*:*');
-
 route.setRoute(app);
-io.on('connection', function(socket){
-	route.setSocket(socket);
-	console.log('a user connected');
-	socket.on('disconnect', () => console.log('Client disconnected'));
-});
 

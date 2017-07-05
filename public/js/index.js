@@ -1,20 +1,5 @@
 (function () {
-    // <script>
-    var host = '<%=host%>';
-    var socket;
-    var adr;
-    if (host == 'localhost') {
-      adr = 'localhost:5000';
-      socket = io.connect(adr);
-  }else {
-      socket = io();
-  }
-  socket.on('timeout',(data)=>{
-    console.log(data);
-    alert(data);
-});
-
-
+ 
   var mHasCode = false;
 
   var Message;
@@ -30,8 +15,8 @@
                 $('.message_input').prop('disabled', true);
                 $('.send_message').prop('disabled', true);
                 $message.find('.button').click(function (e) {
-                   window.location.href=window.location.href;
-               });
+                 window.location.href=window.location.href;
+             });
             } else {
                 $message.find('.button'). hide();
             }
@@ -115,9 +100,9 @@ $(function () {
                 }
             },
             error: function(jqXHR, textStatus, err) {
-             sendMessage('text status '+textStatus+', err '+err,'left',false);
-         }
-     }); 
+               sendMessage('text status '+textStatus+', err '+err,'left',false);
+           }
+       }); 
     }
 
     postMessageToServer('ENABLEWELCOMECHATBOT');

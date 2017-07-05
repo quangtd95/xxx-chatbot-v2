@@ -161,7 +161,7 @@ function checkCode(request,response,isFallback){
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
-function checkMoney (request,response,isFallback,socket) {
+function checkMoney (request,response,isFallback) {
 	var money;
 	var phone_number_of_sender = api_util.getParamsOfContext(request,'authentication_pass').phone_number;
 	var reply;

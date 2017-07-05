@@ -1,7 +1,6 @@
 
 var mainController = require('../controller/main-controller.js');
 var hookController = require('../controller/hook-controller.js');
-var socket;
 module.exports = {
 	setRoute : function (app) {
 		
@@ -16,9 +15,6 @@ module.exports = {
 		app.post('/hook',function (req,res) {
 			hookController.hook(req,res,socket);
 		});
-	},
-	setSocket :function(socket){
-		this.socket = socket;
 	}
 }
 
