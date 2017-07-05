@@ -1,6 +1,6 @@
 var object = require('../model/object.js');
 var api_util = require('../util/apiai-utils.js');
-var db = require('../db/dbHelper.js');
+var db = require('../lib/db/dbHelper.js');
 module.exports = {
 	handle : function (action,req,res) {
 		switch (action) {
@@ -15,7 +15,7 @@ function askBalance(request,response){
 	var contexts = [];
 	var source;
 	var curAccount = api_util.getParamsOfContext(request,'authentication_pass').account_number;
-	db.checkBalance(curAccount,function(success,data)){
+	db.checkBalance(curAccount,function(success,data){
 		if (!success){
 			reply = "sorry, server is unavailable now. please try again later!";
 		} else {
@@ -23,5 +23,5 @@ function askBalance(request,response){
 		}
 		api_util.addContext(contexts,'ask_service',5,{});
 		return response.json(api_util.makeJsonResponse(reply,source,contexts));
-	}
+	});
 }
