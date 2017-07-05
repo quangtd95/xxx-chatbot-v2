@@ -7,7 +7,6 @@ module.exports = {
 	handle: function (action,req,res){
 		switch(action){
 			case 'sendmoney.user.name':
-			case 'sendmoney.user.name.fallback':
 			checkName(req,res);
 			break;
 			case 'sendmoney.user.account':
