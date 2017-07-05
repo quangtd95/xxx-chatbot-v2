@@ -16,12 +16,21 @@ module.exports = {
 			case  'service.user.which.service.fallback':
 			fallBack(req,res);
 			break;
-
+			case 'service.user.want.sign.out':
+			signOut(req,res);
+			break;
 		}		
 	}
 }
 
-fallBack(request,responsee){
+function signOut(request,response){
+	var reply = 'good bye';
+	var contexts = [];
+	var source = 'end.session';
+	return response.json(api_util.makeJsonResponse(reply,source,contexts));
+}
+
+function fallBack(request,responsee){
 	var reply;
 	var contexts = [];
 	var source;
