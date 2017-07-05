@@ -93,8 +93,8 @@ function resendCode(request,response){
 	var contexts = [];
 	var source ;
 	var reply;
-	if (Date.now() - time_send_code < 60000){
-		reply = "please wait about 1 minute before requesting a new code";
+	if (Date.now() - time_send_code < 10000){
+		reply = "please wait about 10 seconds before requesting a new code!";
 	}
 	else{
 		reply = "we have resent a code to "+phone_number_of_sender+" , please check and enter the code below: ";

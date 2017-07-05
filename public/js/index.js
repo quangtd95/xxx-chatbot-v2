@@ -102,13 +102,13 @@ $(function () {
                     sendMessage(reply,'left',false);
                 }
                 if (data.result.fulfillment.source =="countTime"){
-                    console.log("cancel");
+                    mHasCode = false;
                     setTimeout(function  () {
                         if (mHasCode == false){
                             postMessageToServer('cancel');
                             mHasCode = true;
                         }
-                    }, 120000);
+                    }, 30000);
                 }
                 if (data.result.fulfillment.source =="hasCode"){
                     mHasCode = true;
