@@ -10,7 +10,7 @@
    
 </head>
 <body>
- <div class="chat_window" style="margin-top: 100px">
+<div class="chat_window" id="chat_window">
    <div class="top_menu">
       <div class="buttons">
          <div class="button close"></div>
@@ -42,7 +42,9 @@
       </div>
    </li>
 </div>
-<button id="button">showdb</button>
+<center>
+<button id="button" class = "btn btn-danger">showdb</button>
+</center>
 <div id="database" style="display: none;">
    <table class="table" id ="tbInformation" >
       <tr>
@@ -99,12 +101,16 @@
 <script type="text/javascript">
    $("#button").click(function() { 
     // assumes element with id='button'
-    var div = document.getElementById('database');
-    if (div.style.display !== 'none') {
-     div.style.display = 'none';
+    var table = document.getElementById('database');
+    var chat = document.getElementById('chat_window'); 
+    if (table.style.display !== 'none') {
+     table.style.display = 'none';
+     chat.style.marginTop = '0px';
+
   }
   else {
-     div.style.display = 'block';
+     table.style.display = 'block';
+     chat.style.marginTop = '100px';
   }
 });
 </script>
