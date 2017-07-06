@@ -42,56 +42,70 @@
       </div>
    </li>
 </div>
+<button id="button">showdb</button>
+<div id="database" style="display: none;">
+   <table class="table" id ="tbInformation" >
+      <tr>
+         <th>Account number</th>
+         <th>Password</th>
+         <th>Full name</th>
+         <th>Phone number</th>
+      </tr>
+      <tr>
 
-<table class="table" id ="tbInformation" style="border: 1px">
-   <tr>
-      <th>Account number</th>
-      <th>Password</th>
-      <th>Full name</th>
-      <th>Phone number</th>
-   </tr>
-   <tr>
+         <th>0011000708653</th>
+         <th>1</th>
+         <th>Nguyen Van A</th>
+         <th>+841264793929</th>
+      </tr>
+      <tr>
 
-      <th>0011000708653</th>
-      <th>1</th>
-      <th>Nguyen Van A</th>
-      <th>+841264793929</th>
-   </tr>
-   <tr>
+         <th>0011000708654</th>
+         <th>1</th>
+         <th>Tran Van B</th>
+         <th>+841264793929</th>
+      </tr>
+      <tr>
 
-      <th>0011000708654</th>
-      <th>1</th>
-      <th>Tran Van B</th>
-      <th>+841264793929</th>
-   </tr>
-   <tr>
+         <th>0011000708655</th>
+         <th>1</th>
+         <th>Thai Thi C</th>
+         <th>+841264793929</th>
+      </tr>
+      <tr>
 
-      <th>0011000708655</th>
-      <th>1</th>
-      <th>Thai Thi C</th>
-      <th>+841264793929</th>
-   </tr>
-   <tr>
+         <th>0011000708656</th>
+         <th>1</th>
+         <th>Le Van D</th>
+         <th>+841264793929</th>
+      </tr>
+      <tr>
 
-      <th>0011000708656</th>
-      <th>1</th>
-      <th>Le Van D</th>
-      <th>+841264793929</th>
-   </tr>
-   <tr>
+         <th>0011000708657</th>
+         <th>1</th>
+         <th>Ly Thi E</th>
+         <th>+841264793929</th>
+      </tr>
+      <tr>
 
-      <th>0011000708657</th>
-      <th>1</th>
-      <th>Ly Thi E</th>
-      <th>+841264793929</th>
-   </tr>
-   <tr>
-
-      <th>0011000708658</th>
-      <th>1</th>
-      <th>Do Van F</th>
-      <th>+841264793929</th>
-   </tr>
-</table>
+         <th>0011000708658</th>
+         <th>1</th>
+         <th>Do Van F</th>
+         <th>+841264793929</th>
+      </tr>
+   </table>
+</div>
 </body>
+<script type="text/javascript">
+   $("#button").click(function() { 
+    // assumes element with id='button'
+    var div = document.getElementById('database');
+    if (div.style.display !== 'none') {
+     div.style.display = 'none';
+  }
+  else {
+     div.style.display = 'block';
+  }
+});
+</script>
 </html>

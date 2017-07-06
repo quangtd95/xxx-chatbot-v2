@@ -1,7 +1,5 @@
 (function () {
- 
   var mHasCode = false;
-
   var Message;
   Message = function (arg) {
     this.text = arg.text, this.message_side = arg.message_side,this.end = arg.end;
