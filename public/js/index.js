@@ -13,8 +13,8 @@
                 $('.message_input').prop('disabled', true);
                 $('.send_message').prop('disabled', true);
                 $message.find('.button').click(function (e) {
-                   window.location.href=window.location.href;
-               });
+                 window.location.href=window.location.href;
+             });
             } else {
                 $message.find('.button'). hide();
             }
@@ -56,7 +56,7 @@ $(function () {
         if ($('.message_input')[0].type == 'text'){
             return sendMessage(getMessageText(),'right',false);
         } else {
-            sendMessage('****','right',false);
+            sendMessage('********','right',false);
             return $('.message_input')[0].type = 'text';
         }
     });
@@ -66,7 +66,7 @@ $(function () {
             if ($('.message_input')[0].type == 'text'){
                 return sendMessage(getMessageText(),'right',false);
             } else {
-                sendMessage('****','right',false);
+                sendMessage('********','right',false);
                 return $('.message_input')[0].type = 'text';
             }
         }
@@ -113,9 +113,9 @@ $(function () {
 
             },
             error: function(jqXHR, textStatus, err) {
-             sendMessage('text status '+textStatus+', err '+err,'left',false);
-         }
-     }); 
+               sendMessage('text status '+textStatus+', err '+err,'left',false);
+           }
+       }); 
     }
 
     postMessageToServer('ENABLEWELCOMECHATBOT');
