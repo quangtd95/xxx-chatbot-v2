@@ -13,8 +13,8 @@
                 $('.message_input').prop('disabled', true);
                 $('.send_message').prop('disabled', true);
                 $message.find('.button').click(function (e) {
-                 window.location.href=window.location.href;
-             });
+                   window.location.href=window.location.href;
+               });
             } else {
                 $message.find('.button'). hide();
             }
@@ -53,17 +53,22 @@ $(function () {
 
     $('.send_message').click(function (e) {
         postMessageToServer(encodeURIComponent(getMessageText()));
-        if ($('.message_input').type == 'text'){
+        if ($('.message_input')[0].type == 'text'){
             return sendMessage(getMessageText(),'right',false);
         } else {
             sendMessage('****','right',false);
-            return $('.message_input').type = 'text';
+            return $('.message_input')[0].type = 'text';
         }
     });
     $('.message_input').keyup(function (e) {
         if (e.which === 13) {
             postMessageToServer(encodeURIComponent(getMessageText()));
-            return sendMessage(getMessageText(),'right',false);
+            if ($('.message_input')[0].type == 'text'){
+                return sendMessage(getMessageText(),'right',false);
+            } else {
+                sendMessage('****','right',false);
+                return $('.message_input')[0].type = 'text';
+            }
         }
     });
 
@@ -90,7 +95,7 @@ $(function () {
                 } else 
                 sendMessage(reply,'left',false);
                 if (data.result.fulfillment.source =="ask.password"){
-                    $(".message_input").type = 'password';
+                    $(".message_input")[0].type = 'password';
                 } 
 
                 if (data.result.fulfillment.source =="countTime"){
@@ -108,9 +113,9 @@ $(function () {
 
             },
             error: function(jqXHR, textStatus, err) {
-               sendMessage('text status '+textStatus+', err '+err,'left',false);
-           }
-       }); 
+             sendMessage('text status '+textStatus+', err '+err,'left',false);
+         }
+     }); 
     }
 
     postMessageToServer('ENABLEWELCOMECHATBOT');
