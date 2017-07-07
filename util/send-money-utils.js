@@ -240,7 +240,7 @@ function checkAccountNumber(request,response,isFallback){
 			}
 			return response.json(api_util.makeJsonResponse(reply,source,contexts));
 			//tài khoản ko khớp với tên
-		} else if (data.HOTEN != name){
+		} else if (data.HOTEN.toLowerCase() != name.toLowerCase()){
 			reply = "name and account number are not match!! please type again.";
 			var lifespan = api_util.getLifeSpanOfContext(request,'ask_account_number_to_send');
 			if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
