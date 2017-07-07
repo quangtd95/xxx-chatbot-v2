@@ -123,6 +123,7 @@ function checkAccountNumber(request,response,isFallback){
 			account = new object.Account(data);
 			reply = "And what is your password? Please type ONLY and EXACTLY it";
 			lifespan = 0;
+			source = 'ask.password'
 			contexts.push(new object.Context('ask_password',5,{}));
 		}
 		contexts.push(new object.Context(name_context,lifespan,{}))

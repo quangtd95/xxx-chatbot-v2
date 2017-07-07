@@ -35,7 +35,7 @@ $(function () {
         $message_input = $('.message_input');
         return $message_input.val();
     };
-    sendMessage = function (text,message_side,end) {
+    sendMessage = function (text,message_side,end,password) {
         var $messages, message;
         if (text.trim() === '') {
             return;
@@ -50,9 +50,15 @@ $(function () {
         message.draw();
         return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
     };
+
     $('.send_message').click(function (e) {
         postMessageToServer(encodeURIComponent(getMessageText()));
-        return sendMessage(getMessageText(),'right',false);
+        if ($('.message_input').type == 'text'){
+            return sendMessage(getMessageText(),'right',false);
+        } else {
+            sendMessage('****','right',false);
+            return $('.message_input').type = 'text';
+        }
     });
     $('.message_input').keyup(function (e) {
         if (e.which === 13) {
@@ -79,11 +85,14 @@ $(function () {
             success: function(data) {
                 var reply = decodeURIComponent(decodeURIComponent(data.result.fulfillment.speech));
                 reply = reply.replace('%0A','\n');
-                if (data.result.action=='answer.dont' || data.result.fulfillment.source =='end.session'){
+                if (data.result.fulfillment.source =='end.session'){
                     sendMessage(reply,'left',true);
-                } else {
-                    sendMessage(reply,'left',false);
-                }
+                } else 
+                sendMessage(reply,'left',false);
+                if (data.result.fulfillment.source =="ask.password"){
+                    $(".message_input").type = 'password';
+                } 
+
                 if (data.result.fulfillment.source =="countTime"){
                     mHasCode = false;
                     setTimeout(function  () {
@@ -96,6 +105,7 @@ $(function () {
                 if (data.result.fulfillment.source =="hasCode"){
                     mHasCode = true;
                 }
+
             },
             error: function(jqXHR, textStatus, err) {
                sendMessage('text status '+textStatus+', err '+err,'left',false);
