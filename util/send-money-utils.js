@@ -176,8 +176,8 @@ function checkMoney (request,response,isFallback) {
 		}
 	} else {
 		money = request.body.result.parameters.number;
-		if (Number(money) < 0) {
-			reply = 'please type again how much you want to send! At least 1vnd!';
+		if (Number(money) < 50000) {
+			reply = 'please type again how much you want to send! At least 50000vnd!';
 		}
 		else {
 			reply = "we just have sent you a PIN code in a text message. plese type it: ";
