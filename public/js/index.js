@@ -105,7 +105,7 @@ $(function () {
                             postMessageToServer('cancel');
                             mHasCode = true;
                         }
-                    }, 30000);
+                    }, 60000);
                 }
                 if (data.result.fulfillment.source =="hasCode"){
                     mHasCode = true;

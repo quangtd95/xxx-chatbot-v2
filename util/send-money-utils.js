@@ -92,8 +92,8 @@ function resendCode(request,response){
 	var contexts = [];
 	var source ;
 	var reply;
-	if (Date.now() - time_send_code < 10000){
-		reply = "please wait about 10 seconds before requesting a new code!";
+	if (Date.now() - time_send_code < 30000){
+		reply = "please wait about 30 seconds before requesting a new code!";
 		var lifespan1 = api_util.getLifeSpanOfContext(request,'ask_verify_code');
 		api_util.addContext(contexts,'ask_verify_code',lifespan1 + 1,{code:code,time:time_send_code});
 	}
