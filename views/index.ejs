@@ -43,7 +43,7 @@
       </li>
    </div>
    <center>
-      <button id="button" class = "btn ">showdb</button>
+      <button id="button" class = "btn cm">showdb</button>
    </center>
    <div id="database" style="display: none;">
       <table class="table" id ="tbInformation" >
@@ -100,18 +100,17 @@
 </body>
 <script type="text/javascript">
    $("#button").click(function() { 
-    // assumes element with id='button'
-    var table = document.getElementById('database');
-    var chat = document.getElementById('chat_window'); 
-    if (table.style.display !== 'none') {
-     table.style.display = 'none';
-     chat.style.marginTop = '0px';
+     var table = document.getElementById('database');
+     var chat = document.getElementById('chat_window'); 
+     if (table.style.display !== 'none') {
+       table.style.display = 'none';
+       chat.style.marginTop = '0px';
 
-  }
-  else {
-     table.style.display = 'block';
-     chat.style.marginTop = '100px';
-  }
-});
+    }
+    else {
+       table.style.display = 'block';
+       chat.style.marginTop = '100px';
+    }
+ });
 </script>
 </html>
