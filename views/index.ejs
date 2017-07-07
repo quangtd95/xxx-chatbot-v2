@@ -10,93 +10,93 @@
    
 </head>
 <body>
-<div class="chat_window" id="chat_window">
-   <div class="top_menu">
-      <div class="buttons">
-         <div class="button close"></div>
-         <div class="button minimize"></div>
-         <div class="button maximize"></div>
+   <div class="chat_window" id="chat_window">
+      <div class="top_menu">
+         <div class="buttons">
+            <div class="button close"></div>
+            <div class="button minimize"></div>
+            <div class="button maximize"></div>
+         </div>
+         <div class="title"><%=title%></div>
       </div>
-      <div class="title"><%=title%></div>
+      <ul class="messages">
+
+
+      </ul>
+      <div class="bottom_wrapper clearfix">
+         <div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..." /></div>
+         <div class="send_message">
+            <div class="icon"></div>
+            <div class="text">Send</div>
+         </div>
+      </div>
    </div>
-   <ul class="messages">
-
-
-   </ul>
-   <div class="bottom_wrapper clearfix">
-      <div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..." /></div>
-      <div class="send_message">
-         <div class="icon"></div>
-         <div class="text">Send</div>
-      </div>
+   <div class="message_template">
+      <li class="message">
+         <div class="avatar"></div>
+         <div class="text_wrapper">
+            <div class="text"></div>
+            <center>
+               <button  class="btn btn-danger button">new Session</button>
+            </center>
+         </div>
+      </li>
    </div>
-</div>
-<div class="message_template">
-   <li class="message">
-      <div class="avatar"></div>
-      <div class="text_wrapper">
-         <div class="text"></div>
-         <center>
-            <button  class="btn btn-danger button">new Session</button>
-         </center>
-      </div>
-   </li>
-</div>
-<center>
-<button id="button" class = "btn btn-danger">showdb</button>
-</center>
-<div id="database" style="display: none;">
-   <table class="table" id ="tbInformation" >
-      <tr>
-         <th>Account number</th>
-         <th>Password</th>
-         <th>Full name</th>
-         <th>Phone number</th>
-      </tr>
-      <tr>
+   <center>
+      <button id="button" class = "btn ">showdb</button>
+   </center>
+   <div id="database" style="display: none;">
+      <table class="table" id ="tbInformation" >
+         <tr>
+            <th>Account number</th>
+            <th>Password</th>
+            <th>Full name</th>
+            <th>Phone number</th>
+         </tr>
+         <tr>
 
-         <th>0011000708653</th>
-         <th>1</th>
-         <th>Nguyen Van A</th>
-         <th>+841264793929</th>
-      </tr>
-      <tr>
+            <th>0011000708653</th>
+            <th>1</th>
+            <th>Nguyen Van A</th>
+            <th>+841264793929</th>
+         </tr>
+         <tr>
 
-         <th>0011000708654</th>
-         <th>1</th>
-         <th>Tran Van B</th>
-         <th>+841264793929</th>
-      </tr>
-      <tr>
+            <th>0011000708654</th>
+            <th>1</th>
+            <th>Tran Van B</th>
+            <th>+841264793929</th>
+         </tr>
+         <tr>
 
-         <th>0011000708655</th>
-         <th>1</th>
-         <th>Thai Thi C</th>
-         <th>+841264793929</th>
-      </tr>
-      <tr>
+            <th>0011000708655</th>
+            <th>1</th>
+            <th>Thai Thi C</th>
+            <th>+841264793929</th>
+         </tr>
+         <tr>
 
-         <th>0011000708656</th>
-         <th>1</th>
-         <th>Le Van D</th>
-         <th>+841264793929</th>
-      </tr>
-      <tr>
+            <th>0011000708656</th>
+            <th>1</th>
+            <th>Le Van D</th>
+            <th>+841264793929</th>
+         </tr>
+         <tr>
 
-         <th>0011000708657</th>
-         <th>1</th>
-         <th>Ly Thi E</th>
-         <th>+841264793929</th>
-      </tr>
-      <tr>
+            <th>0011000708657</th>
+            <th>1</th>
+            <th>Ly Thi E</th>
+            <th>+841264793929</th>
+         </tr>
+         <tr>
 
-         <th>0011000708658</th>
-         <th>1</th>
-         <th>Do Van F</th>
-         <th>+841264793929</th>
-      </tr>
-   </table>
-</div>
+            <th>0011000708658</th>
+            <th>1</th>
+            <th>Do Van F</th>
+            <th>+841264793929</th>
+         </tr>
+      </table>
+   </div>
 </body>
 <script type="text/javascript">
    $("#button").click(function() { 
