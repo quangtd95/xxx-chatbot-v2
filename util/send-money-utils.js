@@ -134,7 +134,7 @@ function checkCode(request,response,isFallback){
 		reply = ""
 		//nhapj ddung code
 		if (code == codeTrue){
-			reply = "correctly. Are you sure you want to send "+money+" vnd to "+name_reciver+"?";
+			reply = "correctly. Are you sure you want to transfer "+money+" vnd to "+name_reciver+"?";
 			api_util.removeContext(contexts,'ask_verify_code');
 			api_util.addContext(contexts,'ask_confirm',3,{});
 			source = "hasCode";
@@ -172,12 +172,12 @@ function checkMoney (request,response,isFallback) {
 			money = 'cancel';
 		} else {
 			money = '';
-			reply = 'please type again how much you want to send!'
+			reply = 'please type again how much you want to transfer!'
 		}
 	} else {
 		money = request.body.result.parameters.number;
 		if (Number(money) < 50000) {
-			reply = 'please type again how much you want to send! At least 50000vnd!';
+			reply = 'please type again how much you want to transfer! At least 50000vnd!';
 		}
 		else {
 			reply = "we just have sent you a PIN code in a text message. plese type it: ";
@@ -193,7 +193,7 @@ function checkMoney (request,response,isFallback) {
 
 	if ((lifespan == 0) || (money.toLowerCase() == 'cancel')){
 		if (lifespan == 0 ) {
-			reply = "Your transaction has been cancel. Please type conrrectly amount of money you want to send in next time!\n what would you like to do?"
+			reply = "Your transaction has been cancel. Please type conrrectly amount of money you want to transfer in next time!\n what would you like to do?"
 		}
 		else {
 			reply = "Your transaction has been cancel. What would you like to do?"
@@ -228,7 +228,7 @@ function checkAccountNumber(request,response,isFallback){
 			var lifespan = api_util.getLifeSpanOfContext(request,'ask_account_number_to_send');
 			if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
 				if (lifespan == 0 ) {
-					reply = "Your transaction has been cancel. Please type conrrectly account number of whom you want to send money in next time!\n what would you like to do?"
+					reply = "Your transaction has been cancel. Please type conrrectly account number of whom you want to transfer money in next time!\n what would you like to do?"
 				}
 				else {
 					reply = "Your transaction has been cancel. What would you like to do?"
@@ -245,7 +245,7 @@ function checkAccountNumber(request,response,isFallback){
 			var lifespan = api_util.getLifeSpanOfContext(request,'ask_account_number_to_send');
 			if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
 				if (lifespan == 0 ) {
-					reply = "Your transaction has been cancel. Please type conrrectly account number of whom you want to send money in next time!\n what would you like to do?"
+					reply = "Your transaction has been cancel. Please type conrrectly account number of whom you want to transfer money in next time!\n what would you like to do?"
 				}
 				else {
 					reply = "Your transaction has been cancel. What would you like to do?"
@@ -258,11 +258,11 @@ function checkAccountNumber(request,response,isFallback){
 			return response.json(api_util.makeJsonResponse(reply,source,contexts));
 			//tài khoản gửi trùng tài khoản nhận
 		} else if (data.SOTAIKHOAN == currentAccountNumber){
-			reply = "sorry, you cannot send money to you. Your transaction has been canceled.";
+			reply = "sorry, you cannot transfer money to you. Your transaction has been canceled.";
 			var lifespan = api_util.getLifeSpanOfContext(request,'ask_account_number_to_send');
 			if ((lifespan == 0) || (number.toLowerCase() == 'cancel')){
 				if (lifespan == 0 ) {
-					reply = "Your transaction has been cancel. Please type conrrectly account number of whom you want to send money in next time!\n what would you like to do?"
+					reply = "Your transaction has been cancel. Please type conrrectly account number of whom you want to transfer money in next time!\n what would you like to do?"
 				}
 				else {
 					reply = "Your transaction has been cancel. What would you like to do?"
@@ -274,7 +274,7 @@ function checkAccountNumber(request,response,isFallback){
 			api_util.addContext(contexts,'ask_service',3,{});
 			return response.json(api_util.makeJsonResponse(reply,source,contexts));
 		}
-		reply = "how much do you want to send?";
+		reply = "how much do you want to transfer?";
 		api_util.removeContext(contexts,'ask_account_number_to_send');
 		api_util.addContext(contexts,'ask_money_to_send',3,{});
 		api_util.addContext(contexts,'send_money',3,{'account_number':data.SOTAIKHOAN});
@@ -305,7 +305,7 @@ function checkName(request, response){
 			//nếu sai quá 3 lần hoặc người dùng gõ CANCEL thì hủy giao dịch.
 			if ((lifespan == 0) || (name.toLowerCase() == 'cancel')){
 				if (lifespan == 0 ) {
-					reply = "Your transaction has been cancel. Please type conrrectly name whom you want to send money in next time!\n what would you like to do?"
+					reply = "Your transaction has been cancel. Please type conrrectly name whom you want to transfer money in next time!\n what would you like to do?"
 				}
 				else {
 					reply = "Your transaction has been cancel. What would you like to do?"

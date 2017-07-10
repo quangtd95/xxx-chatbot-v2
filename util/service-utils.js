@@ -42,14 +42,14 @@ function fallBack(request,response){
 		api_util.removeContext(contexts,'authentication_pass');
 	}
 	else {
-		reply = "I can help you check your balance, your trading history or sending your money";
+		reply = "I can help you check your balance, your trading history or transfer your money";
 	}
 	return response.json(api_util.makeJsonResponse(reply,source,contexts));
 }
 
 function chooseServiceSendMoney(request,response){
 	var contexts = [];
-	var reply = "Who do you want to send money to? Please type ONLY and EXACTLY full name";
+	var reply = "Who do you want to transfer money to? Please type ONLY and EXACTLY full name";
 	var source = ""	;
 	api_util.removeContext(contexts,'ask_service');;
 	api_util.addContext(contexts,'ask_name_to_send',3,{})
