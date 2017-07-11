@@ -66,7 +66,7 @@ $(function () {
             if ($('.message_input')[0].type == 'text'){
                 return sendMessage(getMessageText(),'right',false);
             } else {
-                sendMessage('********','cright',false);
+                sendMessage('********','right',false);
                 return $('.message_input')[0].type = 'text';
             }
         }
